@@ -23,7 +23,7 @@ build-app: generate test
 	GOOS=windows GOARCH=amd64 go build -tags release -o ./dist/$(APP_NAME)app.exe  ./cmd/app/
 
 build-lambda: generate test
-	GOOS=linux GOARCH=arm64 go build -tags="release lambda.norpc" -o ./dist/bootstrap ./src/cmd/lambda/ &&\
+	GOOS=linux GOARCH=arm64 go build -tags="release lambda.norpc" -o ./dist/bootstrap ./cmd/lambda/ &&\
 	cd ./dist && touch -t $(date +%Y)01010000 bootstrap && zip -X -j lambda.zip bootstrap && # for reproducible zip file cf. https://content.pivotal.io/blog/barriers-to-deterministic-reproducible-zip-files\
 	cd ..
 
